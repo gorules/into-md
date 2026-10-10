@@ -16,7 +16,7 @@ export interface Converted {
   markdown: string;
 }
 
-export type Input = Uint8Array | ArrayBuffer | ArrayBufferView;
+export type Input = Uint8Array | ArrayBufferLike | ArrayBufferView;
 
 export interface ConverterOptions {
   workers?: number;
@@ -33,3 +33,7 @@ export declare const DEFAULT_LIMITS: Readonly<Limits>;
 export declare class IntoMdError extends Error {
   readonly code: ErrorCode;
 }
+
+export declare function createConverter(options?: ConverterOptions): Converter;
+
+export declare function convert(input: Input, limits?: Partial<Limits>): Promise<Converted>;

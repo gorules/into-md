@@ -19,18 +19,12 @@ export class IntoMdError extends Error {
   }
 }
 
-const PDF_MAGIC = [0x25, 0x50, 0x44, 0x46, 0x2d];
-const CFB_MAGIC = [0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1];
-
-const startsWith = (bytes, magic) => bytes.length >= magic.length && magic.every((byte, index) => bytes[index] === byte);
-
-export const needsFullModule = (bytes) => startsWith(bytes, PDF_MAGIC) || startsWith(bytes, CFB_MAGIC);
-
 export const toBytes = (input) => {
   if (input instanceof Uint8Array) return input;
   if (input instanceof ArrayBuffer) return new Uint8Array(input);
+  if (typeof SharedArrayBuffer !== 'undefined' && input instanceof SharedArrayBuffer) return new Uint8Array(input);
   if (ArrayBuffer.isView(input)) return new Uint8Array(input.buffer, input.byteOffset, input.byteLength);
-  throw new TypeError('input must be a Uint8Array, Buffer or ArrayBuffer');
+  throw new TypeError('input must be a Uint8Array, Buffer, ArrayBuffer, SharedArrayBuffer or ArrayBufferView');
 };
 
 export const resolveLimits = (limits = {}) => ({ ...DEFAULT_LIMITS, ...limits });

@@ -11,7 +11,7 @@ const pooled: Promise<string> = useConverter(createConverter({ workers: 1 }), by
 const defaults: Readonly<Limits> = DEFAULT_LIMITS;
 const isError = (value: unknown): value is IntoMdError => value instanceof IntoMdError;
 
-// @ts-expect-error convertSync is Node.js only
+// @ts-expect-error there is no synchronous API
 intoMd.convertSync(bytes);
 
 void [converted, pooled, defaults, isError];
