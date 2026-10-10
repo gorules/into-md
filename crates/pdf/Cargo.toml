@@ -1,0 +1,18 @@
+[package]
+name = "into-md-pdf"
+version = "0.1.0"
+edition = "2018"
+license = "MIT"
+description = "PDF text extraction for into-md, forked from pdf-extract 0.12.1 by Jeff Muizelaar"
+repository = "https://github.com/gorules/into-md"
+publish = false
+
+[lib]
+name = "into_md_pdf"
+
+[dependencies]
+cff-parser = "0.2.0"
+encoding_rs = "0.8.34"
+euclid = "0.20.5"
+log = { version = "0.4.22", features = ["max_level_off", "release_max_level_off"] }
+lopdf = { version = "0.42", default-features = false }

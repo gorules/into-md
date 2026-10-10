@@ -1,4 +1,5 @@
 mod archive;
+mod cells;
 mod docx;
 mod markdown;
 mod odf;
@@ -6,9 +7,10 @@ mod odf;
 mod pdf;
 mod pptx;
 mod rtf;
-#[cfg(feature = "xls")]
-mod sheet;
+#[cfg(test)]
+mod tests;
 mod text;
+mod xls;
 mod xlsx;
 mod xml;
 
@@ -120,7 +122,7 @@ pub fn convert(bytes: &[u8], limits: &Limits) -> Result<Converted, Error> {
         if contains_utf16(bytes, "EncryptedPackage") {
             return Err(Error::Encrypted);
         }
-        (Format::Xls, convert_xls(bytes, limits)?)
+        (Format::Xls, xls::convert(bytes, limits)?)
     } else if bytes.starts_with(ZIP_MAGIC) {
         let mut archive = Archive::open(bytes, limits)?;
         let format = archive.detect()?;
@@ -149,16 +151,6 @@ pub fn convert(bytes: &[u8], limits: &Limits) -> Result<Converted, Error> {
 fn contains_utf16(bytes: &[u8], needle: &str) -> bool {
     let encoded: Vec<u8> = needle.encode_utf16().flat_map(u16::to_le_bytes).collect();
     bytes.windows(encoded.len()).any(|window| window == encoded)
-}
-
-#[cfg(feature = "xls")]
-fn convert_xls(bytes: &[u8], limits: &Limits) -> Result<String, Error> {
-    sheet::convert(bytes, limits)
-}
-
-#[cfg(not(feature = "xls"))]
-fn convert_xls(_bytes: &[u8], _limits: &Limits) -> Result<String, Error> {
-    Err(Error::Unsupported)
 }
 
 #[cfg(feature = "pdf")]

@@ -1,0 +1,8 @@
+[package]
+name = "encoding_rs"
+version = "0.8.999"
+edition = "2024"
+license = "MIT"
+description = "UTF-16 only stand-in for the encoding_rs API surface used by lopdf and into-md-pdf"
+repository = "https://github.com/gorules/into-md"
+publish = false

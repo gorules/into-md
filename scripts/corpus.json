@@ -1027,5 +1027,257 @@
     "path": "sc/qa/unit/data/ods/password.ods",
     "expect": "error",
     "sha256": "93a2f2109b3e195decbd02d1dfc4c8e8035688aefe8473764ce3ad76b78b19ad"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/ArabicCIDTrueType.pdf",
+    "sha256": "1cad1de912ba29f89a6d8b08bc5b0f84382874ffedab2c8f9e05ef608c265bb1"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/Embedded_font.pdf",
+    "sha256": "4b7588e070cd37c7cfa2ce0a493ba9ec6d57fb36a2ca3c6ab50c74a7818a2f9a"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/ShowText-ShadingPattern.pdf",
+    "sha256": "13ac785e8445fbf01d5a8200e0e899daa204cdbe723b02f38f8af61ac48707bb"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/TrueType_without_cmap.pdf",
+    "sha256": "3e111eef52ce9c0d0b1da043290df4b49a5670c89891fcb3db6962edb12e35aa"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/arial_unicode_ab_cidfont.pdf",
+    "sha256": "049a4330710d8470896061acf7ee486735e94cef2769f6cc13fec3cb13bb65aa"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/arial_unicode_en_cidfont.pdf",
+    "sha256": "1c4a08108d8074f543c04e9b2ea2b93a842e2b29eb05ee9d99766f430fd365ab"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/bitmap-symbol-symhuffuncompressed-texthuff.pdf",
+    "sha256": "347a83cce9504ff8414fe028d8db2b311ebe800cab0116469c90456dd889218b"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/bug1947248_text.pdf",
+    "sha256": "249c09e9e76ab30f11aa0ca9d06bfc3fef40499810d6790134a43ee3bf838790"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/chrome-text-selection-markedContent.pdf",
+    "sha256": "256551a6dabf4ae27b603a820bc58a15fa082919b023c7a181b491b92ef05b44"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/cid_cff.pdf",
+    "sha256": "d894d356411217414fd9040d3d038612e1f4a1598936b2385a76458dd6d64d38"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/cidfont_cmap_overflow.pdf",
+    "sha256": "ecb07ca4b3c6a9fd408db07c29c7e4426fb1bd6ee9e2bbdfa4997b65be602c13"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/complex_ttf_font.pdf",
+    "sha256": "4b205d3fd11e7ad2b9b86cc446561909d48dd9e0b38327cfd69d0fdeb6c28e14"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/copy_paste_ligatures.pdf",
+    "sha256": "3a6948ca33558a0f1c9dabf70902e14e263e814b6a12da44ba8ec9439c0bafdd"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/font_ascent_descent.pdf",
+    "sha256": "ac32f419e728d1fa96daa24172871f8d38cf7ad6a7f3076a2f86b76a6811517e"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/freetext_no_appearance.pdf",
+    "sha256": "870554855b0703cec4140a873edcfb3096bd604fe6cb6460d2a73475370aee7c"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/freetexts.pdf",
+    "sha256": "fe9585ddd465da48ca94866bcbd15a25672c58962fca30953f07df0974aaec75"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue10665_reduced.pdf",
+    "sha256": "5f24b3626a16e92f298d6085b19b780c66cc0ad7b4e6f0e2ddb5080b5462a909"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue11045.pdf",
+    "sha256": "16e57e98a1a5560f2dcaa8315570da1193d5f52e20393ea8572ce37c54c7a755"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue11144_reduced.pdf",
+    "sha256": "3342fa04cb3bd01bed1be5ee26256951f7b9ef900132ee2dd2b20a2621b22a2d"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue11477_reduced.pdf",
+    "sha256": "de4388f1c2a08bc57dc50640d580c9e184a21e48f832d5c484939e758cb76201"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue11549_reduced.pdf",
+    "sha256": "13ba78671c0ceaaffb10878e6c153c18924db5afcd54cc7f038eb85fb10e28b1"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue11713.pdf",
+    "sha256": "75c11858c0cba8ef5f16f00e01e7a737e28736ccbc04a50e9a461a1a4716710a"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue11718_reduced.pdf",
+    "sha256": "d50586144823418248b267f4888a85596cb94e80cc0c0cf4df7b478a910ba5a1"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue11740_reduced.pdf",
+    "sha256": "eda5e5c96e9839f81002a6848e2db6fc2b2471caad314524d757f9b11832ebd4"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue12504.pdf",
+    "sha256": "4e9eac3c7f46b806d7f03186d39240ee8e67000c09caa978a8ea4a6f7dd1b362"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue13271.pdf",
+    "sha256": "4a2d633eea1d282ebf42f76c6e081382efcda2ba6b5646eca0aa3617760d25ec"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue13561_reduced.pdf",
+    "sha256": "6ab67b2ba8e13bbca2474987c1f7091f6e5953787157150912ab45dc7a3a91a0"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue14618.pdf",
+    "sha256": "374196f142332bec6b1fec2a86514455e288e8ed743484c7a28aa629c8452b1c"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue15053.pdf",
+    "sha256": "6c8c1f23110e5e87506ef59fba0edbed0af6307453537ddca93cab1d5754e201"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue15516_reduced.pdf",
+    "sha256": "52e65f522805d7c3baa69f3f5fbcad41d7a3922146a3bd591f4ae5bd84359aad"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue15759.pdf",
+    "sha256": "33985cc27e83ed287165fdf3a43ae8fdf1939bf54f9cc539913023b82b807d8f"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue15910.pdf",
+    "sha256": "d93267bddc9b13f054a07538c6347e78d2fb4ce460b69981ef0a1189091db56b"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue17056.pdf",
+    "sha256": "2b83abfed38422f2c48c814dff05a98eaf3e749560ed9f4ae6afd0f52894d6c0"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue17671.pdf",
+    "sha256": "dd4261babb58f609f9719079424d5104712e20d6847ae6eb571b4a1da8a613f8"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue18305.pdf",
+    "sha256": "5862358013704d786347a1e5be0c2470df2dc319c0b3c49ad62038d2663379f1"
+  },
+  {
+    "source": "pdfjs",
+    "repo": "mozilla/pdf.js",
+    "sha": "24176a9460ca69f4d2ea5df4577f5ac2302b6cc1",
+    "path": "test/pdfs/issue19182.pdf",
+    "sha256": "6e49be1ab2ab6a2581f9e5f6df5619fbbd30d2a0d7b2ad6796c14835dab9c054"
   }
 ]

@@ -1,38 +1,10 @@
-[package]
-name = "into-md"
-version = "0.1.0"
-edition = "2024"
-license = "MIT"
-repository = "https://github.com/gorules/into-md"
-publish = false
-
-[lib]
-name = "into_md"
-crate-type = ["cdylib", "rlib"]
-
-[dependencies]
-calamine = { version = "0.36", default-features = false, optional = true }
-pdf-extract = { version = "0.12", optional = true }
-quick-xml = "0.41"
-zip = { version = "8", default-features = false, features = ["deflate-flate2"] }
-flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
-
-[dev-dependencies]
-zip = { version = "8", default-features = false, features = ["deflate-flate2"] }
-
-[features]
-full = ["pdf", "xls"]
-pdf = ["dep:pdf-extract", "dep:getrandom"]
-xls = ["dep:calamine"]
-
-[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-codepage = "0.1"
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-getrandom = { version = "0.4", default-features = false, optional = true }
+[workspace]
+resolver = "3"
+members = ["crates/into-md", "crates/pdf", "crates/saslprep", "crates/utf16"]
 
 [patch.crates-io]
-pdf-extract = { path = "vendor/pdf-extract" }
+encoding_rs = { path = "crates/utf16" }
+stringprep = { path = "crates/saslprep" }
 
 [profile.release]
 opt-level = "z"

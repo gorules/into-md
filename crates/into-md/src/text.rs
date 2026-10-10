@@ -38,7 +38,6 @@ fn host_decode(code_page: u16, bytes: &[u8]) -> Option<String> {
 }
 
 #[cfg(not(target_arch = "wasm32"))]
-fn host_decode(code_page: u16, bytes: &[u8]) -> Option<String> {
-    let encoding = codepage::to_encoding(code_page)?;
-    Some(encoding.decode_without_bom_handling(bytes).0.into_owned())
+fn host_decode(_code_page: u16, _bytes: &[u8]) -> Option<String> {
+    None
 }

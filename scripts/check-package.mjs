@@ -33,5 +33,5 @@ for (const { output } of MODULES) {
 }
 
 const { version } = JSON.parse(readFileSync(new URL('package.json', root), 'utf8'));
-const cargoVersion = readFileSync(new URL('Cargo.toml', root), 'utf8').match(/^version = "([^"]+)"/m)?.[1];
+const cargoVersion = readFileSync(new URL('crates/into-md/Cargo.toml', root), 'utf8').match(/^version = "([^"]+)"/m)?.[1];
 if (cargoVersion !== version) fail(`package.json version ${version} does not match Cargo.toml version ${cargoVersion}`);

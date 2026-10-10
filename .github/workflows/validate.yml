@@ -41,7 +41,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Rust tests
-        run: cargo test --release --features full
+        run: cargo test --release
 
       - name: Build wasm
         run: pnpm build

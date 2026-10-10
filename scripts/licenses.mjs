@@ -11,7 +11,7 @@ const metadata = JSON.parse(
 
 const packages = new Map(metadata.packages.map((pkg) => [pkg.id, pkg]));
 const nodes = new Map(metadata.resolve.nodes.map((node) => [node.id, node]));
-const root = metadata.resolve.root;
+const root = metadata.packages.find((pkg) => pkg.name === 'into-md').id;
 const included = new Set();
 const pending = [root];
 while (pending.length > 0) {
@@ -32,6 +32,7 @@ const licenseFiles = (directory) =>
 const crates = [...included]
   .filter((id) => id !== root)
   .map((id) => packages.get(id))
+  .filter((pkg) => pkg.source !== null || pkg.name === 'into-md-pdf')
   .sort((a, b) => a.name.localeCompare(b.name) || a.version.localeCompare(b.version));
 
 const texts = new Map();

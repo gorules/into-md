@@ -1,7 +1,7 @@
 #![allow(warnings)]
 extern crate lopdf;
 
-use adobe_cmap_parser::{ByteMapping, CodeRange, CIDRange};
+use ps::{ByteMapping, CodeRange, CIDRange};
 use encoding_rs::UTF_16BE;
 use lopdf::content::Content;
 pub use lopdf::*;
@@ -10,11 +10,7 @@ use lopdf::encryption::DecryptionError;
 use std::fmt::{Debug, Formatter};
 extern crate encoding_rs;
 extern crate euclid;
-extern crate adobe_cmap_parser;
-extern crate type1_encoding_parser;
-extern crate unicode_normalization;
 use euclid::vec2;
-use unicode_normalization::UnicodeNormalization;
 use std::fmt;
 use std::str;
 use std::fs::File;
@@ -27,7 +23,7 @@ use std::result::Result;
 use log::{warn, error, debug};
 mod core_fonts;
 mod glyphnames;
-mod zapfglyphnames;
+mod ps;
 mod encodings;
 
 pub struct Space;
@@ -360,7 +356,7 @@ fn encoding_to_unicode_table(name: &[u8]) -> Vec<u16> {
         _ => panic!("unexpected encoding {:?}", pdf_to_utf8(name))
     };
     let encoding_table = encoding.iter()
-        .map(|x| if let &Some(x) = x { glyphnames::name_to_unicode(x).unwrap() } else { 0 })
+        .map(|x| if let &Some(x) = x { glyphnames::name_to_unicode(x).unwrap_or(0) } else { 0 })
         .collect();
     encoding_table
 }
@@ -389,7 +385,7 @@ impl<'a> PdfSimpleFont<'a> {
                     Some(&Object::Stream(ref s)) => {
                         let s = get_contents(s);
                         //dlog!("font contents {:?}", pdf_to_utf8(&s));
-                        type1_encoding = Some(type1_encoding_parser::get_encoding_map(&s).expect("encoding"));
+                        type1_encoding = Some(ps::get_type1_encoding(&s));
                     }
                     _ => { dlog!("font file {:?}", file) }
                 }
@@ -423,7 +419,7 @@ impl<'a> PdfSimpleFont<'a> {
                                 return None;
                             }
                             let unicode = glyphnames::name_to_unicode(&name).or_else(|| {
-                                zapfglyphnames::zapfdigbats_names_to_unicode(name)
+                                glyphnames::zapf_name_to_unicode(name)
                             });
                             if unicode.is_none() {
                                 warn!("Couldn't find unicode for {}", name);
@@ -495,14 +491,7 @@ impl<'a> PdfSimpleFont<'a> {
                                         match unicode_map.entry(code as u32) {
                                             // If there's a unicode table entry missing use one based on the name
                                             Entry::Vacant(v) => { v.insert(String::from_utf16(&be).unwrap()); }
-                                            Entry::Occupied(e) => {
-                                                if e.get() != &String::from_utf16(&be).unwrap() {
-                                                    let normal_match  = e.get().nfkc().eq(String::from_utf16(&be).unwrap().nfkc());
-                                                    if !normal_match {
-                                                        warn!("Unicode mismatch {} {} {:?} {:?} {:?}", normal_match, name, e.get(), String::from_utf16(&be), be);
-                                                    }
-                                                }
-                                            }
+                                            Entry::Occupied(_) => {}
                                         }
                                     }
                                 } else {
@@ -557,7 +546,7 @@ impl<'a> PdfSimpleFont<'a> {
                     encoding_table = Some(table)
                 } else if subtype == "TrueType" {
                     encoding_table = Some(encodings::WIN_ANSI_ENCODING.iter()
-                        .map(|x| if let &Some(x) = x { glyphnames::name_to_unicode(x).unwrap() } else { 0 })
+                        .map(|x| if let &Some(x) = x { glyphnames::name_to_unicode(x).unwrap_or(0) } else { 0 })
                         .collect());
                 }
             }
@@ -605,12 +594,12 @@ impl<'a> PdfSimpleFont<'a> {
                 // or the basename but for now we'll just use Helvetica
                 "Helvetica"
             };
-            for font_metrics in core_fonts::metrics().iter() {
+            for font_metrics in core_fonts::METRICS.iter() {
                 if font_metrics.0 == base_name {
                     if let Some(ref encoding) = encoding_table {
                         dlog!("has encoding");
-                        for w in font_metrics.2 {
-                            let c = glyphnames::name_to_unicode(w.2).unwrap();
+                        for w in font_metrics.1 {
+                            let c = w.2;
                             for i in 0..encoding.len() {
                                 if encoding[i] == c {
                                     width_map.insert(i as CharCode, w.1 as f64);
@@ -623,20 +612,14 @@ impl<'a> PdfSimpleFont<'a> {
                         // same result.
 
                         let mut table = vec![0; 256];
-                        for w in font_metrics.2 {
-                            dlog!("{} {}", w.0, w.2);
-                            // -1 is "not encoded"
+                        for w in font_metrics.1 {
                             if w.0 != -1 {
-                                table[w.0 as usize] = if base_name == "ZapfDingbats" {
-                                    zapfglyphnames::zapfdigbats_names_to_unicode(w.2).unwrap_or_else(|| panic!("bad name {:?}", w))
-                                } else {
-                                    glyphnames::name_to_unicode(w.2).unwrap()
-                                }
+                                table[w.0 as usize] = w.2;
                             }
                         }
 
                         let encoding = &table[..];
-                        for w in font_metrics.2 {
+                        for w in font_metrics.1 {
                             width_map.insert(w.0 as CharCode, w.1 as f64);
                             // -1 is "not encoded"
                         }
@@ -927,7 +910,7 @@ fn get_unicode_map<'a>(doc: &'a Document, font: &'a Dictionary) -> Option<HashMa
             let contents = get_contents(stream);
             dlog!("Stream: {}", String::from_utf8(contents.clone()).unwrap());
 
-            let cmap = adobe_cmap_parser::get_unicode_map(&contents).unwrap();
+            let cmap = ps::get_unicode_map(&contents);
             let mut unicode = HashMap::new();
             // "It must use the beginbfchar, endbfchar, beginbfrange, and endbfrange operators to
             // define the mapping from character codes to Unicode character sequences expressed in
@@ -990,7 +973,7 @@ impl<'a> PdfCIDFont<'a> {
             &Object::Stream(ref stream) => {
                 let contents = get_contents(stream);
                 dlog!("Stream: {}", String::from_utf8(contents.clone()).unwrap());
-                adobe_cmap_parser::get_byte_mapping(&contents).unwrap()
+                ps::get_byte_mapping(&contents)
             }
             _ => { panic!("unsupported encoding {:?}", encoding)}
         };
@@ -1587,7 +1570,7 @@ impl<'a> Processor<'a> {
                 font_size: std::f64::NAN,
                 character_spacing: 0.,
                 word_spacing: 0.,
-                horizontal_scaling: 100. / 100.,
+                horizontal_scaling: 1.0,
                 leading: 0.,
                 rise: 0.,
                 tm: Transform2D::identity(),

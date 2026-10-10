@@ -3,10 +3,7 @@ import { copyFileSync } from 'node:fs';
 
 export const TOOLCHAIN = 'nightly-2026-10-10';
 
-export const MODULES = [
-  { output: 'into_md.wasm', features: [] },
-  { output: 'into_md_full.wasm', features: ['--features', 'full'] },
-];
+export const MODULES = [{ output: 'into_md.wasm', features: [] }];
 
 const RUSTFLAGS = [
   '--cfg getrandom_backend="custom"',
@@ -27,6 +24,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       [
         `+${process.env.INTO_MD_TOOLCHAIN ?? TOOLCHAIN}`,
         'build',
+        '--package',
+        'into-md',
         '--release',
         '--target',
         'wasm32-unknown-unknown',
