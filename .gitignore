@@ -1,0 +1,6 @@
+target
+node_modules
+*.tgz
+*.wasm
+!test/fixtures/**
+test/corpus/

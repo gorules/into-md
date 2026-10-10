@@ -1,0 +1,101 @@
+{
+  "name": "@gorules/into-md",
+  "version": "0.1.0",
+  "description": "Convert DOCX, PPTX, XLSX, XLS, ODS, ODT, ODP, RTF and PDF to Markdown in the browser or Node.js with a small WebAssembly module",
+  "author": "GoRules <hi@gorules.io> (https://gorules.io)",
+  "license": "MIT",
+  "homepage": "https://github.com/gorules/into-md#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gorules/into-md.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gorules/into-md/issues"
+  },
+  "keywords": [
+    "browser",
+    "converter",
+    "document",
+    "docx",
+    "llm",
+    "markdown",
+    "odp",
+    "ods",
+    "odt",
+    "office",
+    "pdf",
+    "pptx",
+    "rtf",
+    "wasm",
+    "webassembly",
+    "xls",
+    "xlsx"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "types": "./browser.d.ts",
+  "exports": {
+    ".": {
+      "browser": {
+        "types": "./browser.d.ts",
+        "default": "./browser.js"
+      },
+      "node": {
+        "types": "./node.d.ts",
+        "default": "./node.js"
+      },
+      "default": {
+        "types": "./browser.d.ts",
+        "default": "./browser.js"
+      }
+    },
+    "./into_md.wasm": "./into_md.wasm",
+    "./into_md_full.wasm": "./into_md_full.wasm",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "abi.js",
+    "pool.js",
+    "node.js",
+    "node-worker.js",
+    "browser.js",
+    "browser-worker.js",
+    "types.d.ts",
+    "node.d.ts",
+    "browser.d.ts",
+    "into_md.wasm",
+    "into_md_full.wasm",
+    "THIRD_PARTY_LICENSES.md"
+  ],
+  "sideEffects": [
+    "./browser-worker.js",
+    "./node-worker.js"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "packageManager": "pnpm@10.33.4",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "cargo test --release --quiet --features full && node scripts/build.mjs && node --test test/*.test.mjs && pnpm typecheck",
+    "test:js": "node --test test/*.test.mjs",
+    "notices": "node scripts/licenses.mjs",
+    "fixtures": "node scripts/fixtures.mjs",
+    "corpus": "node scripts/corpus.mjs",
+    "compare": "node scripts/compare.mjs",
+    "prepack": "node scripts/check-package.mjs",
+    "typecheck": "tsc -p test/types/tsconfig.node.json && tsc -p test/types/tsconfig.browser.json",
+    "attw": "attw --pack . --profile esm-only --exclude-entrypoints ./into_md.wasm ./into_md_full.wasm"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@types/node": "^24.19.2",
+    "exceljs": "^4.4.0",
+    "jszip": "^3.10.1",
+    "officeparser": "8.1.1",
+    "typescript": "^5.9.3"
+  }
+}
