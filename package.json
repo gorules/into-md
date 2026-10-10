@@ -1,6 +1,6 @@
 {
   "name": "@gorules/into-md",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Convert DOCX, PPTX, XLSX, XLS, ODS, ODT, ODP, RTF and PDF to Markdown in the browser or Node.js with a small WebAssembly module",
   "author": "GoRules <hi@gorules.io> (https://gorules.io)",
   "license": "MIT",
